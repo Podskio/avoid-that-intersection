@@ -22,6 +22,8 @@ const updateIncidents = async () => {
     .execute()
 
   lastUpdated = new Date()
+
+  console.log(`Updated incidents at ${lastUpdated}`)
 }
 
 export default updateIncidents

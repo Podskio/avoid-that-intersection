@@ -17,8 +17,11 @@ server.register(fastifyTRPCPlugin, {
   trpcOptions: { router: appRouter, createContext },
 })
 
-server.listen({ port: process.env.PORT || 3000 }).catch((err) => {
-  server.log.error(err)
-})
+server
+  .listen({ port: process.env.PORT || 3000 })
+  .then(() => console.log("Server listening"))
+  .catch((err) => {
+    server.log.error(err)
+  })
 
 schedule("0 */12 * * *", updateIncidents)
