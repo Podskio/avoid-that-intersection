@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-container {
+  height: 100vh;
+  background-color: #222222;
+}
+
+.map-overlay {
+  position: absolute;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: white;
+  user-select: none;
+}
+
+.map-overlay h1 {
+  font-size: 20px;
+}
+
+.map-overlay h2 {
+  font-size: 16px;
+}
+
+.map-overlay i {
+  font-size: 14px;
+  color: #c5c5c5;
+}
+
+@media (max-width: 768px) {
+  .map-overlay {
+    right: 10px;
+  }
+
+  .map-overlay h1 {
+    font-size: 16px;
+  }
+
+  .map-overlay h2 {
+    font-size: 14px;
+  }
+
+  .map-overlay i {
+    font-size: 12px;
+  }
+}
