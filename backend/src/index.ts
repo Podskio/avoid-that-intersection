@@ -7,7 +7,7 @@ import { createContext } from "./context"
 import updateIncidents from "./incidents"
 import { appRouter } from "./router"
 
-const server = fastify()
+const server = fastify({ logger: true })
 
 server.register(cors, {
   origin: "*",
@@ -18,8 +18,7 @@ server.register(fastifyTRPCPlugin, {
 })
 
 server
-  .listen({ port: process.env.PORT || 3000 })
-  .then(() => console.log("Server listening"))
+  .listen({ port: process.env.PORT || 3000, host: "0.0.0.0" })
   .catch((err) => {
     server.log.error(err)
   })
