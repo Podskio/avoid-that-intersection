@@ -6,7 +6,7 @@ Created with React, Vite, Leaflet, Leaflet.heat, Fastify, tRPC, and Kysely.
 
 ## How it works
 
-Every 12 hours, the backend server will query the PulsePoint API and store any variations of traffic collisions (expanded, involving structure, etc) in the database. Incidents are identified by their PulsePoint-issued id to prevent duplicates. This data is served to the frontend, which is plotted onto a map.
+Every 12 hours, the backend server will query the PulsePoint API and store any variations of traffic collisions (expanded, involving structure, etc) in the database. Incidents are identified by their PulsePoint-issued id to prevent duplicates. This data is served to the frontend, which is plotted onto a map. Incidents receive a different intensity on the heatmap based on the severity of the call.
 
 ## Deployment
 
