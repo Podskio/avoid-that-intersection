@@ -6,22 +6,22 @@
     "init-db": "tsx src/schema.ts"
   },
   "devDependencies": {
-    "@types/node": "^18.14.2",
+    "@types/node": "^18.15.0",
     "@types/node-cron": "^3.0.7",
     "@types/pg": "^8.6.6",
-    "rimraf": "^4.1.2",
-    "tsx": "^3.12.3",
-    "typescript": "^4.9.5"
+    "rimraf": "^4.4.0",
+    "tsx": "^3.12.3"
   },
   "dependencies": {
     "@fastify/cors": "^8.2.0",
-    "@trpc/server": "^10.13.0",
+    "@trpc/server": "^10.15.0",
     "dotenv": "^16.0.3",
-    "fastify": "^4.13.0",
-    "kysely": "^0.23.4",
+    "fastify": "^4.14.1",
+    "kysely": "^0.23.5",
     "node-cron": "^3.0.2",
-    "pg": "^8.9.0",
-    "pulsepoint": "^1.5.0",
-    "zod": "^3.20.6"
+    "pg": "^8.10.0",
+    "pulsepoint": "^1.5.1",
+    "superjson": "^1.12.2",
+    "zod": "^3.21.4"
   }
 }
