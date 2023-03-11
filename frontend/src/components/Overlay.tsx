@@ -1,5 +1,8 @@
 import { trpc } from "../utils/trpc"
 
+// Pluralize time units
+const p = (count: number) => (count === 1 ? "" : "s")
+
 export const relativeTime = (dateTime: number) => {
   const elapsed = new Date().getTime() - dateTime
 
@@ -10,12 +13,12 @@ export const relativeTime = (dateTime: number) => {
   const weeks = Math.round(elapsed / (1000 * 60 * 60 * 24 * 7))
   const months = Math.round(elapsed / (1000 * 60 * 60 * 24 * 30))
 
-  if (seconds < 60) return seconds + " seconds ago"
-  if (minutes < 60) return minutes + " minutes ago"
-  if (hours < 24) return hours + " hours ago"
-  if (days < 7) return days + " days ago"
-  if (weeks < 4) return weeks + " weeks ago"
-  return months + " months ago"
+  if (seconds < 60) return seconds + " second" + p(seconds) + " ago"
+  if (minutes < 60) return minutes + " minute" + p(minutes) + " ago"
+  if (hours < 24) return hours + " hour" + p(hours) + " ago"
+  if (days < 7) return days + " day" + p(days) + " ago"
+  if (weeks < 4) return weeks + " week" + p(weeks) + " ago"
+  return months + " month" + p(months) + " ago"
 }
 
 const Overlay = () => {
