@@ -1,7 +1,8 @@
 import "leaflet/dist/leaflet.css"
-import { MapContainer, TileLayer } from "react-leaflet"
+import { CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet"
 import { trpc } from "../utils/trpc"
 import HeatLayer from "./HeatLayer"
+import { relativeTime } from "./Overlay"
 
 const Map = () => {
   const { data: incidents } = trpc.getIncidents.useQuery()
@@ -13,6 +14,20 @@ const Map = () => {
         url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
       />
       {incidents && <HeatLayer data={incidents} />}
+      {incidents?.map((incident) => (
+        <CircleMarker
+          key={incident.id}
+          center={[incident.lat, incident.lng]}
+          radius={20}
+          opacity={0}
+          fillOpacity={0}
+        >
+          <Tooltip sticky>
+            <h3>{incident.type}</h3>
+            <i>{relativeTime(incident.time.getTime())}</i>
+          </Tooltip>
+        </CircleMarker>
+      ))}
     </MapContainer>
   )
 }
