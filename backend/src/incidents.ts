@@ -1,7 +1,16 @@
+import type { CallType } from "pulsepoint"
 import { getIncidents } from "pulsepoint"
 import { db } from "./db"
 
 export let lastUpdated = new Date()
+
+const whitelistedCalls: CallType[] = [
+  "Traffic Collision",
+  "Expanded Traffic Collision",
+  "Traffic Collision Involving Structure",
+  "Traffic Collision Involving Train",
+  "Multi Casualty",
+]
 
 const updateIncidents = async () => {
   if (!process.env.AGENCIES) throw new Error("No agencies provided")
@@ -9,9 +18,11 @@ const updateIncidents = async () => {
   const incidents = await getIncidents(process.env.AGENCIES)
 
   const trafficCollisions = incidents.recent
-    .filter((incident) => incident.type.includes("Traffic Collision"))
+    .filter((incident) => whitelistedCalls.includes(incident.type))
     .map((incident) => ({
       id: incident.id,
+      time: incident.receivedTime,
+      type: incident.type,
       lat: incident.coordinates[0],
       lng: incident.coordinates[1],
     }))
