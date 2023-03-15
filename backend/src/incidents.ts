@@ -14,7 +14,7 @@ const whitelistedCalls: CallType[] = [
 
 const inDurationRange = (incident: RecentIncident) =>
   incident.clearedTime.getTime() - incident.receivedTime.getTime() >
-  parseInt(process.env.MIN_INCIDENT_DURATION) * 1000 * 60
+  parseInt(process.env.MIN_INCIDENT_DURATION!) * 1000 * 60
 
 const updateIncidents = async () => {
   if (!process.env.AGENCIES) throw new Error("No agencies provided")
