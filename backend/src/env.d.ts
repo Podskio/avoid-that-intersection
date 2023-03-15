@@ -5,5 +5,6 @@ namespace NodeJS {
     PORT?: number
     DATABASE_URL: string
     AGENCIES: string
+    MIN_INCIDENT_DURATION: string
   }
 }

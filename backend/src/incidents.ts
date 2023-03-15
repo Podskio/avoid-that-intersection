@@ -1,4 +1,4 @@
-import type { CallType } from "pulsepoint"
+import type { CallType, RecentIncident } from "pulsepoint"
 import { getIncidents } from "pulsepoint"
 import { db } from "./db"
 
@@ -12,6 +12,10 @@ const whitelistedCalls: CallType[] = [
   "Multi Casualty",
 ]
 
+const inDurationRange = (incident: RecentIncident) =>
+  incident.clearedTime.getTime() - incident.receivedTime.getTime() >
+  parseInt(process.env.MIN_INCIDENT_DURATION) * 1000 * 60
+
 const updateIncidents = async () => {
   if (!process.env.AGENCIES) throw new Error("No agencies provided")
 
@@ -19,6 +23,7 @@ const updateIncidents = async () => {
 
   const trafficCollisions = incidents.recent
     .filter((incident) => whitelistedCalls.includes(incident.type))
+    .filter(inDurationRange)
     .map((incident) => ({
       id: incident.id,
       time: incident.receivedTime,

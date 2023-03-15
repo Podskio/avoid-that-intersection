@@ -27,6 +27,7 @@ Add environment variables:
 PORT= # Optional, this might be set automatically by your hosting provider
 DATABASE_URL= # PostgreSQL connection string
 AGENCIES= # String of comma-separated PulsePoint agency IDs
+MIN_INCIDENT_DURATION= # Minimum duration of an incident in minutes
 ```
 
 Run `pnpm init-db` after setting `DATABASE_URL` to create the required database schema.
