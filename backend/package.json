@@ -21,7 +21,7 @@
     "kysely": "^0.23.5",
     "node-cron": "^3.0.2",
     "pg": "^8.10.0",
-    "pulsepoint": "^1.5.2",
+    "pulsepoint": "^1.5.3",
     "superjson": "^1.12.2",
     "zod": "^3.21.4"
   }
