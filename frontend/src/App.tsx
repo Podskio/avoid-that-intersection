@@ -6,6 +6,12 @@ import Map from "./components/Map"
 import Overlay from "./components/Overlay"
 import { trpc } from "./utils/trpc"
 
+export interface IncidentFilters {
+  type: string
+  after?: Date
+  before?: Date
+}
+
 function App() {
   const [queryClient] = useState(
     () =>
@@ -24,11 +30,17 @@ function App() {
     }),
   )
 
+  const [incidentFilters, setIncidentFilters] = useState<IncidentFilters>({
+    type: "all",
+    after: undefined,
+    before: undefined,
+  })
+
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <Map />
-        <Overlay />
+        <Map filters={incidentFilters} />
+        <Overlay filters={incidentFilters} setFilters={setIncidentFilters} />
       </QueryClientProvider>
     </trpc.Provider>
   )

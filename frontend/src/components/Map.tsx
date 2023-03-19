@@ -1,11 +1,39 @@
 import "leaflet/dist/leaflet.css"
 import { CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet"
+import type { IncidentFilters } from "../App"
 import { trpc } from "../utils/trpc"
 import HeatLayer from "./HeatLayer"
-import { relativeTime } from "./Overlay"
 
-const Map = () => {
+const formatDate = (date: Date) =>
+  date.toLocaleTimeString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  })
+
+interface MapProps {
+  filters: IncidentFilters
+}
+
+const Map = ({ filters }: MapProps) => {
   const { data: incidents } = trpc.getIncidents.useQuery()
+
+  const filterIncidents = () => {
+    let filtered = incidents
+
+    if (filters.type !== "all")
+      filtered = filtered?.filter((incident) => incident.type === filters.type)
+    if (filters.after)
+      filtered = filtered?.filter((incident) => incident.time >= filters.after!)
+    if (filters.before)
+      filtered = filtered?.filter((incident) => incident.time <= filters.before!)
+
+    return filtered
+  }
+
+  const filteredIncidents = filterIncidents()
 
   return (
     <MapContainer minZoom={4} zoomControl={false}>
@@ -13,8 +41,8 @@ const Map = () => {
         attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
         url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
       />
-      {incidents && <HeatLayer data={incidents} />}
-      {incidents?.map((incident) => (
+      {filteredIncidents && <HeatLayer data={filteredIncidents} />}
+      {filteredIncidents?.map((incident) => (
         <CircleMarker
           key={incident.id}
           center={[incident.lat, incident.lng]}
@@ -24,7 +52,7 @@ const Map = () => {
         >
           <Tooltip sticky>
             <h3>{incident.type}</h3>
-            <i>{relativeTime(incident.time.getTime())}</i>
+            <i>{formatDate(incident.time)}</i>
           </Tooltip>
         </CircleMarker>
       ))}
