@@ -20,6 +20,8 @@ const getIntensity = (incident: Incidents[number]["type"]) => {
   }
 }
 
+let layer: L.HeatLayer | null = null
+
 const HeatLayer = ({ data }: { data: Incidents }) => {
   const map = useMap()
 
@@ -29,7 +31,9 @@ const HeatLayer = ({ data }: { data: Incidents }) => {
     getIntensity(incident.type),
   ]) as HeatLatLngTuple[]
 
-  L.heatLayer(heatLayerData, {
+  if (layer) map.removeLayer(layer)
+
+  layer = L.heatLayer(heatLayerData, {
     gradient: {
       0.4: "#cc1821",
       0.6: "#f13c37",
@@ -39,7 +43,11 @@ const HeatLayer = ({ data }: { data: Incidents }) => {
     },
     radius: 20,
     minOpacity: 0.2,
-  }).addTo(map)
+  })
+
+  layer.addTo(map)
+
+  if (data.length == 0) return null
 
   const dataCoordinates = data.map((incident) => [
     incident.lat,
