@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { httpBatchLink } from "@trpc/client"
 import { useState } from "react"
-import superjson from "superjson"
 import Map from "./components/Map"
 import Overlay from "./components/Overlay"
 import { trpc } from "./utils/trpc"
@@ -26,7 +25,6 @@ function App() {
           url: import.meta.env.VITE_BACKEND_URL,
         }),
       ],
-      transformer: superjson,
     }),
   )
 
