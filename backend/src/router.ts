@@ -8,9 +8,9 @@ export const t = initTRPC.context<Context>().create({
 })
 
 export const appRouter = t.router({
-  getIncidents: t.procedure.query(async ({ ctx }) => {
-    return await ctx.db.selectFrom("incident").selectAll().execute()
-  }),
+  getIncidents: t.procedure.query(
+    async ({ ctx }) => await ctx.db.selectFrom("incident").selectAll().execute(),
+  ),
 
   getLastUpdated: t.procedure.query(() => lastUpdated.getTime()),
 })

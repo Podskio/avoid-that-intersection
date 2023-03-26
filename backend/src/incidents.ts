@@ -26,7 +26,7 @@ const updateIncidents = async () => {
     .filter(inDurationRange)
     .map((incident) => ({
       id: incident.id,
-      time: incident.receivedTime,
+      timestamp: incident.receivedTime.toISOString(),
       type: incident.type,
       lat: incident.coordinates[0],
       lng: incident.coordinates[1],

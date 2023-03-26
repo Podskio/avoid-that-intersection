@@ -4,7 +4,7 @@ import { Pool } from "pg"
 
 interface IncidentTable {
   id: string
-  time: Date
+  timestamp: string
   type: string
   lat: number
   lng: number
