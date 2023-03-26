@@ -34,7 +34,7 @@ interface OverlayProps {
   setFilters: Dispatch<SetStateAction<IncidentFilters>>
 }
 
-const Overlay = ({ setFilters }: OverlayProps) => {
+const Overlay = ({ filters, setFilters }: OverlayProps) => {
   const { data: lastUpdated } = trpc.getLastUpdated.useQuery()
 
   const [showFilters, setShowFilters] = useState<boolean>(true)
@@ -59,8 +59,6 @@ const Overlay = ({ setFilters }: OverlayProps) => {
 
   const setBeforeDate = (e: ChangeEvent<HTMLInputElement>) => {
     const before = e.target.valueAsDate ?? undefined
-    before?.setDate(before.getDate() + 1)
-    before?.setHours(24)
 
     setFilters((current: IncidentFilters) => ({
       ...current,
@@ -78,7 +76,7 @@ const Overlay = ({ setFilters }: OverlayProps) => {
       {showFilters && lastUpdated && (
         <>
           <p>Incident Type</p>
-          <select onChange={setType}>
+          <select value={filters.type} onChange={setType}>
             <option value="all">All</option>
             {callTypes.map((callType) => (
               <option key={callType} value={callType}>
@@ -88,9 +86,17 @@ const Overlay = ({ setFilters }: OverlayProps) => {
           </select>
 
           <p>Date Range</p>
-          <input type="date" onChange={setAfterDate} />
+          <input
+            type="date"
+            value={filters.after?.toISOString().slice(0, 10)}
+            onChange={setAfterDate}
+          />
           <i className="date-to">to</i>
-          <input type="date" onChange={setBeforeDate} />
+          <input
+            type="date"
+            value={filters.before?.toISOString().slice(0, 10)}
+            onChange={setBeforeDate}
+          />
         </>
       )}
       {lastUpdated ? (
