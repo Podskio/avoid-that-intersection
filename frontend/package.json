@@ -6,11 +6,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.28.0",
-    "@trpc/client": "^10.18.0",
-    "@trpc/react-query": "^10.18.0",
-    "@trpc/server": "^10.18.0",
-    "leaflet": "^1.9.3",
+    "@tanstack/react-query": "^4.32.0",
+    "@trpc/client": "^10.35.0",
+    "@trpc/react-query": "^10.35.0",
+    "@trpc/server": "^10.35.0",
+    "leaflet": "^1.9.4",
     "leaflet.heat": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,11 +19,11 @@
   "devDependencies": {
     "@types/leaflet": "^1.9.3",
     "@types/leaflet.heat": "^0.2.1",
-    "@types/react": "^18.0.29",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "^18.2.16",
+    "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^3.1.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.33.0",
     "typescript": "^4.9.5",
-    "vite": "^4.2.1"
+    "vite": "^4.4.7"
   }
 }
