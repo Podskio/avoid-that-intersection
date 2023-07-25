@@ -56,8 +56,8 @@ importers:
         specifier: ^18.15.10
         version: 18.15.10
       '@types/node-cron':
-        specifier: ^3.0.7
-        version: 3.0.7
+        specifier: ^3.0.8
+        version: 3.0.8
       '@types/pg':
         specifier: ^8.6.6
         version: 8.6.6
@@ -1000,8 +1000,8 @@ packages:
       '@types/geojson': 7946.0.10
     dev: true
 
-  /@types/node-cron@3.0.7:
-    resolution: {integrity: sha512-9PuLtBboc/+JJ7FshmJWv769gDonTpItN0Ol5TMwclpSQNjVyB2SRxSKBcTtbSysSL5R7Oea06kTTFNciCoYwA==}
+  /@types/node-cron@3.0.8:
+    resolution: {integrity: sha512-+z5VrCvLwiJUohbRSgHdyZnHzAaLuD/E2bBANw+NQ1l05Crj8dIxb/kKK+OEqRitV2Wr/LYLuEBenGDsHZVV5Q==}
     dev: true
 
   /@types/node@18.15.10:
