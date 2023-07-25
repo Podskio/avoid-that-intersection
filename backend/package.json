@@ -18,7 +18,7 @@
     "@trpc/server": "^10.18.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.15.0",
-    "kysely": "^0.23.5",
+    "kysely": "^0.26.1",
     "node-cron": "^3.0.2",
     "pg": "^8.10.0",
     "pulsepoint": "^1.5.3",
